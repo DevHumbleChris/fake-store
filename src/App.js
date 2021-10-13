@@ -1,57 +1,34 @@
 import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { fab } from '@fortawesome/free-brands-svg-icons'
+import { fas } from '@fortawesome/free-solid-svg-icons'
+import { far } from '@fortawesome/free-regular-svg-icons'
 import './App.css';
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import Homepage from './pages/Homepage'
+import Navbar from './components/Navbar'
+import Jewellery from './pages/Jewellery'
+import MensClothing from './pages/MensClothing'
+import WomensClothing from './pages/WomensClothing'
+import Electronics from './pages/Electronics'
+
+library.add(fab, fas, far)
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
-    </div>
+    <React.Fragment>
+      <BrowserRouter>
+        <Navbar />
+        <Switch>
+          <Route path="/" component={Homepage} exact />
+          <Route path="/jewelery" component={Jewellery} />
+          <Route path="/mens-clothing" component={MensClothing} />
+          <Route path="/womens-clothing" component={WomensClothing} />
+          <Route path="/electronics" component={Electronics} />
+        </Switch>
+      </BrowserRouter>
+      <Homepage />
+    </React.Fragment>
   );
 }
 
