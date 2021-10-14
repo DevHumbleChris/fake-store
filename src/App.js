@@ -27,7 +27,6 @@ function App() {
           <Route path="/electronics" component={Electronics} />
         </Switch>
       </BrowserRouter>
-      <Homepage />
     </React.Fragment>
   );
 }

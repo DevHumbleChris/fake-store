@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import ProductList from '../components/ProductList'
+import LoadingSpinner from '../components/LoadingSpinner'
 
 function MensClothing() {
   const url = "https://fakestoreapi.com/products/category/men's%20clothing"
   const [allProducts, setAllProducts] = useState([])
+  const [isLoading, setIsLoading] = useState(false)
 
   async function getProductsFromAPI(url) {
     try {
@@ -18,12 +20,24 @@ function MensClothing() {
   }
 
   useEffect(() => {
+    setIsLoading(true)
     getProductsFromAPI(url)
   }, [url])
 
+  if(allProducts) {
+    setTimeout(() => {
+      setIsLoading(false)
+    }, 3500)
+  }
+
   return (
     <main>
-      <ProductList products={allProducts} />
+      {
+        isLoading ?
+        <LoadingSpinner className="mx-2" />
+        :
+        <ProductList products={allProducts} />
+      }
     </main>
   )
 }

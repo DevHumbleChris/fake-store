@@ -1,11 +1,15 @@
 import React, { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { addToCartCheckOut } from '../features/cartSlice'
+import { useDispatch } from 'react-redux'
 
 function ProductList({ products }) {
   const [isAddToCart, setIsAddToCart] = useState(false)
   const [currentCart, setCurrentCart] = useState([])
+  const dispatch = useDispatch()
   const addToCart = (product) => {
     setIsAddToCart(true)
+    dispatch(addToCartCheckOut(product))
     setCurrentCart([...currentCart, product.id])
   }
   return (
@@ -16,7 +20,7 @@ function ProductList({ products }) {
           {products.map((product) => (
             <div key={product.id} className="group relative bg-gray-300 rounded p-2 shadow-xl">
               <div className="max-w-xl max-h-xs">
-                <img src={product.image} className="rounded-xl object-contain" />
+                <img src={product.image} alt={product.title} className="rounded-xl object-contain" />
                 <div className="p-2">
                   <p className="text-sm font-extrabold">
                     { product.title }

@@ -4,6 +4,7 @@ import { MenuIcon, SearchIcon, ShoppingBagIcon, XIcon } from '@heroicons/react/o
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Link } from 'react-router-dom'
 import ShoppingCart from './ShoppingCart'
+import { useSelector } from 'react-redux'
 
 const pages = [
     { name: "Men's Clothing", href: '/mens-clothing', fontIcon: ['fas', 'male'] },
@@ -19,6 +20,9 @@ function classNames(...classes) {
 function Navbar() {
   const [open, setOpen] = useState(false)
   const [isShoppingCart, setIsShoppingCart] = useState(false)
+  const { cart } = useSelector(state => state.userCart)
+
+  const noCartItems = cart.length
 
   const showShoppingCart = () => {
     setIsShoppingCart(true)
@@ -29,10 +33,10 @@ function Navbar() {
   }
 
   return (
-    <div className="bg-white sticky">
+    <div className="bg-white sticky z-40 w-full mb-2 top-0 right-0 left-0">
       {/* Mobile menu */}
       <Transition.Root show={open} as={Fragment}>
-        <Dialog as="div" className="fixed inset-0 flex z-40 lg:hidden" onClose={setOpen}>
+        <Dialog as="div" className="fixed inset-0 flex z-50 lg:hidden" onClose={setOpen}>
           <Transition.Child
             as={Fragment}
             enter="transition-opacity ease-linear duration-300"
@@ -73,11 +77,11 @@ function Navbar() {
                   onClick={() => setOpen(false)}
                 >
                   <img
-                    className="h-16 w-auto"
+                    className="h-16 w-auto logo"
                     src="https://tailwindui.com/img/logos/workflow-mark.svg?color=indigo&shade=600"
                     alt=""
                   />
-                <span className="block mx-1 font-extrabold text-2xl">FakeStore</span>
+                <span className="block mx-1 font-extrabold text-2xl appName">FakeStore</span>
                 </Link>
               </div>
 
@@ -158,11 +162,11 @@ function Navbar() {
                   className="flex items-center"
                 >
                   <img
-                    className="h-8 w-auto"
+                    className="h-8 w-auto logo"
                     src="https://tailwindui.com/img/logos/workflow-mark.svg?color=indigo&shade=600"
                     alt=""
                   />
-                <span className="block mx-1 font-extrabold text-xl">FakeStore</span>
+                <span className="block mx-1 font-extrabold text-xl appName">FakeStore</span>
                 </Link>
               </div>
 
@@ -211,7 +215,7 @@ function Navbar() {
                       className="flex-shrink-0 h-6 w-6 text-gray-400 group-hover:text-gray-500"
                       aria-hidden="true"
                     />
-                    <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">0</span>
+                  <span className="ml-2 text-sm font-extrabold text-green-700 group-hover:text-green-800"> { noCartItems } </span>
                     <span className="sr-only">items in cart, view bag</span>
                   </button>
                 </div>

@@ -14,3 +14,47 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.loadingSpinner {
+  animation: spin 2s infinite;
+}
+.loadingAppName, .appName {
+  animation: textColor 1s infinite;
+}
+
+.logo {
+  animation: spinLogo 3s 2s infinite;
+}
+
+@keyframes spinLogo {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg)
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg)
+  }
+}
+
+@keyframes textColor {
+  0% {
+    color: green;
+  }
+  100% {
+    color: #4f46e5;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .responsive {
+    top: -20rem;
+  }
+}
