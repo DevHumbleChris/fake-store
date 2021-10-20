@@ -13,6 +13,11 @@ function WomensClothing() {
       const response = await axios.get(url)
       const responseData = response.data
       setAllProducts(responseData)
+      if(responseData) {
+        setTimeout(() => {
+          setIsLoading(false)
+        }, 3500)
+      }
     } catch (err) {
       console.log(err.message)
     }
@@ -22,12 +27,6 @@ function WomensClothing() {
     setIsLoading(true)
     getProductsFromAPI(url)
   }, [url])
-
-  if(allProducts) {
-    setTimeout(() => {
-      setIsLoading(false)
-    }, 3500)
-  }
 
   return (
     <main>

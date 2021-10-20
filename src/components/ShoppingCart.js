@@ -70,7 +70,7 @@ function ShoppingCart({ closeCart }) {
                         <ul role="list" className="-my-6 divide-y divide-gray-200">
                           {cart.map((product) => (
                             <>
-                              { modalOpen && <RemoveModal modalOpen={modalOpen} closeCartRemoveModal={closeCartRemoveModal} /> }
+                              { modalOpen && <RemoveModal modalOpen={modalOpen} closeCartRemoveModal={closeCartRemoveModal} productName={product.title} /> }
                               <li key={product.id} className="py-6 flex">
                                 <div className="flex-shrink-0 w-24 h-24 border border-gray-200 rounded-md overflow-hidden">
                                   <img
@@ -91,8 +91,26 @@ function ShoppingCart({ closeCart }) {
                                     <p className="mt-1 text-sm text-gray-500">{product.category}</p>
                                   </div>
                                   <div className="flex-1 flex items-end justify-between text-sm">
-                                    <p className="text-gray-500">Qty {1}</p>
-
+                                    <div className="flex justify-between items-center">
+                                      <button
+                                        className="bg-pink-500 text-white active:bg-pink-600 font-bold uppercase text-sm px-3 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 mt-2 ease-linear transition-all duration-150 cursor-pointer"
+                                        type="button"
+                                      >
+                                        <FontAwesomeIcon icon={['fas', 'plus']} />
+                                      </button>
+                                      <p className="text-gray-500 mx-2">
+                                        Qty
+                                        <span className="mx-2 text-blue-900 font-extrabold">
+                                          {product.quantity}
+                                        </span>
+                                      </p>
+                                      <button
+                                        className="bg-pink-500 text-white active:bg-pink-600 font-bold uppercase text-sm px-3 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 mt-2 ease-linear transition-all duration-150 cursor-pointer"
+                                        type="button"
+                                      >
+                                        <FontAwesomeIcon icon={['fas', 'minus']} />
+                                      </button>
+                                    </div>
                                     <div className="flex">
                                       <button
                                         type="button" className="font-medium text-red-600 hover:text-indigo-500"
