@@ -11,6 +11,7 @@ import Jewellery from './pages/Jewellery'
 import MensClothing from './pages/MensClothing'
 import WomensClothing from './pages/WomensClothing'
 import Electronics from './pages/Electronics'
+import Checkout from './components/Checkout'
 
 library.add(fab, fas, far)
 
@@ -25,6 +26,7 @@ function App() {
           <Route path="/mens-clothing" component={MensClothing} />
           <Route path="/womens-clothing" component={WomensClothing} />
           <Route path="/electronics" component={Electronics} />
+          <Route path="/checkout" component={Checkout} />
         </Switch>
       </BrowserRouter>
     </React.Fragment>

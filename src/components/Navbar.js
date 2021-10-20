@@ -97,7 +97,6 @@ function Navbar() {
                       onClick={() => setOpen(false)}
                     >
                       <FontAwesomeIcon icon={page.fontIcon} className="mx-2 text-xl"/>
-                      {console.log(page.fontIcon)}
                       {page.name}
                     </Link>
                   </div>

@@ -23,11 +23,14 @@ const cartSlice = createSlice({
       state.cart = newCart
     },
     openCartWrapper: (state) => {
-      console.log(state.cartWrapper)
       state.cartWrapper = !state.cartWrapper
+    },
+    increaseQuantity: (state, action) => {
+      console.log(state.cart)
+      console.log(action.payload)
     }
   }
 })
 
-export const { addToCartCheckOut, removeFromCart, openCartWrapper } = cartSlice.actions
+export const { addToCartCheckOut, removeFromCart, openCartWrapper, increaseQuantity } = cartSlice.actions
 export default cartSlice.reducer

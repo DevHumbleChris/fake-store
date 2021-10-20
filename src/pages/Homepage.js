@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect} from 'react'
 import axios from 'axios'
 import ProductList from '../components/ProductList'
 import LoadingSpinner from '../components/LoadingSpinner'
