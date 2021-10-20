@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { addToCartCheckOut } from '../features/cartSlice'
+import { addToCartCheckOut, openCartWrapper } from '../features/cartSlice'
 import { useDispatch } from 'react-redux'
 
 function ProductList({ products }) {
@@ -10,6 +10,7 @@ function ProductList({ products }) {
   const addToCart = (product) => {
     setIsAddToCart(true)
     dispatch(addToCartCheckOut(product))
+    dispatch(openCartWrapper())
     setCurrentCart([...currentCart, product.id])
   }
   return (

@@ -1,10 +1,13 @@
 import React, { useState } from 'react'
+import { removeFromCart } from '../features/cartSlice'
+import { useDispatch } from 'react-redux'
 
-function RemoveModal({ modalOpen, closeCartRemoveModal, productName }) {
+function RemoveModal({ modalOpen, closeCartRemoveModal, product }) {
   const [isModal, setIsModal] = useState(modalOpen)
+  const dispatch = useDispatch()
 
-  const removeCartItem = () => {
-    closeCartRemoveModal()
+  const removeCartItem = (product) => {
+    dispatch(removeFromCart(product))
   }
 
   const cancelItemRemove = () => {
@@ -34,7 +37,7 @@ function RemoveModal({ modalOpen, closeCartRemoveModal, productName }) {
                     <p class="text-sm text-gray-500">
                       Are you sure you want to remove
                       <span className="mx-1 text-red-900">
-                        { productName }
+                        { product.title }
                       </span>
                       from cart?
                     </p>
@@ -45,7 +48,7 @@ function RemoveModal({ modalOpen, closeCartRemoveModal, productName }) {
             <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
               <button
                 type="button" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm"
-                onClick={removeCartItem}
+                onClick={() => removeCartItem(product)}
               >
                 Remove
               </button>

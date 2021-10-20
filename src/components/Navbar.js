@@ -4,7 +4,8 @@ import { MenuIcon, SearchIcon, ShoppingBagIcon, XIcon } from '@heroicons/react/o
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Link } from 'react-router-dom'
 import ShoppingCart from './ShoppingCart'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { openCartWrapper } from '../features/cartSlice'
 
 const pages = [
     { name: "Men's Clothing", href: '/mens-clothing', fontIcon: ['fas', 'male'] },
@@ -19,17 +20,17 @@ function classNames(...classes) {
 
 function Navbar() {
   const [open, setOpen] = useState(false)
-  const [isShoppingCart, setIsShoppingCart] = useState(false)
-  const { cart } = useSelector(state => state.userCart)
+  const { cart, cartWrapper } = useSelector(state => state.userCart)
+  const dispatch = useDispatch()
 
   const noCartItems = cart.length
 
   const showShoppingCart = () => {
-    setIsShoppingCart(true)
+    dispatch(openCartWrapper())
   }
 
   const closeShoppingCart = () => {
-    setIsShoppingCart(false)
+    dispatch(openCartWrapper())
   }
 
   return (
@@ -206,7 +207,7 @@ function Navbar() {
 
                 {/* Cart */}
                 <div className="ml-4 flow-root lg:ml-6">
-                  { isShoppingCart && <ShoppingCart closeCart={closeShoppingCart} /> }
+                  { cartWrapper && <ShoppingCart /> }
                   <button
                     className="group -m-2 p-2 flex items-center"
                     onClick={showShoppingCart}
